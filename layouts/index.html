@@ -10,6 +10,8 @@
 <header class="main-header no-cover">
 {{end}}
 
+    {{ if .Site.Params.noburger }}
+    {{ else }}
     <nav class="main-nav overlay clearfix">
         {{ if .Site.Params.logo }}
             <a class="blog-logo" href="{{ .Permalink }}"><img src="{{ .Site.Params.logo  | relURL}}" alt="Blog Logo" /></a>
@@ -24,6 +26,7 @@
             {{end}}
         {{end}}
     </nav>
+    {{ end }}
     <div class="vertical">
         <div class="main-header-content inner">
             {{ partial "social.html" . }}

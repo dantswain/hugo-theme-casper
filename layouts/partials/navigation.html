@@ -1,24 +1,13 @@
-<div class="nav">
-    <h3 class="nav-title">Menu</h3>
-    <a href="#" class="nav-close">
-        <span class="hidden">Close</span>
-    </a>
-    <ul>
+{{ if not .IsHome }}
+      <ul class="nav">
         {{ $currentNode := . }}
         {{with .Site.Menus.main}}
         {{ range sort . "Weight" "desc"}}
-            {{.Pre}}
-            <li class="nav-opened{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}} nav-current{{end}}" role="presentation">
-            	<a href="{{.URL}}">{{.Name}}</a>
+          {{.Pre}}
+            <li class="nav-item">
+              <a href="{{.URL}}">{{.Name}}</a>
             </li>
         {{end}}
         {{end}}
-    </ul>
-
-    {{ if .Site.Params.RSSLink}}
-    <a class="subscribe-button icon-feed" href="{{.Site.Params.RSSLink }}">Subscribe</a> </div>
-    {{else}}
-    <a class="subscribe-button icon-feed" href="{{if .IsNode}}{{.RSSLink}}{{else}}{{"index.xml" | relURL}}{{end}}">Subscribe</a>
-    {{end}}
-</div>
-<span class="nav-cover"></span>
+      </ul>
+{{ end }}
